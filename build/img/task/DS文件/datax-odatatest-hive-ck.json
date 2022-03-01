@@ -1,0 +1,81 @@
+{
+	"core": {
+		"transport": {
+			"channel": {
+				"speed": {
+					"byte": 10485760
+				}
+			}
+		}
+	},
+	"job": {
+		"setting": {
+			"speed": {
+				"byte": 10485760
+			},
+			"errorLimit": {
+				"record": 0,
+				"percentage": 0
+			}
+		},
+		"content": [{
+			"reader": {
+				"name": "hdfsreader",
+				"parameter": {
+					"hadoopConfig": {
+						"fs.defaultFS":"hdfs://hdfsunity",
+						"dfs.nameservices": "hdfsunity",
+						"dfs.ha.namenodes.hdfsunity":"r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,15",
+						"dfs.namenode.rpc-address.hdfsunity.r1":"arm-rt-0001.odata.ncmp.unicom.local:8888",
+						"dfs.namenode.rpc-address.hdfsunity.r2":"arm-rt-0002.odata.ncmp.unicom.local:8888",
+						"dfs.namenode.rpc-address.hdfsunity.r3":"arm-rt-0003.odata.ncmp.unicom.local:8888",
+						"dfs.namenode.rpc-address.hdfsunity.r4":"arm-rt-0004.odata.ncmp.unicom.local:8888",
+						"dfs.namenode.rpc-address.hdfsunity.r5":"arm-rt-0005.odata.ncmp.unicom.local:8888",
+						"dfs.namenode.rpc-address.hdfsunity.r6":"arm-rt-0006.odata.ncmp.unicom.local:8888",
+						"dfs.namenode.rpc-address.hdfsunity.r7":"arm-rt-0007.odata.ncmp.unicom.local:8888",
+						"dfs.namenode.rpc-address.hdfsunity.r8":"arm-rt-0008.odata.ncmp.unicom.local:8888",
+						"dfs.namenode.rpc-address.hdfsunity.r9":"arm-rt-0009.odata.ncmp.unicom.local:8888",
+						"dfs.namenode.rpc-address.hdfsunity.r10":"arm-rt-0010.odata.ncmp.unicom.local:8888",
+						"dfs.namenode.rpc-address.hdfsunity.r11":"arm-rt-0011.odata.ncmp.unicom.local:8888",
+						"dfs.namenode.rpc-address.hdfsunity.r12":"arm-rt-0012.odata.ncmp.unicom.local:8888",
+						"dfs.namenode.rpc-address.hdfsunity.r13":"arm-rt-0013.odata.ncmp.unicom.local:8888",
+						"dfs.namenode.rpc-address.hdfsunity.r14":"arm-rt-0014.odata.ncmp.unicom.local:8888",
+						"dfs.namenode.rpc-address.hdfsunity.r15":"arm-rt-0015.odata.ncmp.unicom.local:8888",
+						"dfs.client.failover.proxy.provider.hdfsunity": "org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider",
+						"dfs.data.transfer.protection":"authentication"
+					},
+					"defaultFS": "hdfs://hdfsunity",
+					"haveKerberos":true,
+                    "kerberosKeytabFilePath":"/home/zb_zhw_yw_gx/zb_zhw_yw_odatatest.keytab",
+                    "kerberosKrb5FilePath":"/home/zb_zhw_yw_gx/krb5.conf",
+                    "kerberosPrincipal":"zb_zhw_yw_odatatest@ODATA.NCMP.UNICOM.LOCAL",
+					"path": "/user/zb_zhw_yw_odatatest/hive/warehouse/tmp_zb_zhw_yw_odatatest.db/hive_ck",
+					"column": [{
+							"index": 0,
+							"type": "long"
+						},
+						{
+							"index": 1,
+							"type": "string"
+						}
+					],
+					"fileType": "TEXT",
+					"encoding": "UTF-8",
+					"fieldDelimiter": "\u0001"
+				}
+			},
+			"writer": {
+				"name": "clickhousewriter",
+				"parameter": {
+					"username": "zb_zhw_yw_odatatest",
+					"password": "TKjkbSR1egxD9n6x",
+					"column": ["id", "name"],
+					"connection": [{
+						"jdbcUrl": "jdbc:clickhouse://172.17.53.159:8123/zb_zhw_yw_odatatest",
+						"table": ["test"]
+					}]
+				}
+			}
+		}]
+	}
+}

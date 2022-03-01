@@ -3,7 +3,7 @@
 
 .history
 # Production
-/build
+# /build
 
 # Generated files
 .docusaurus
